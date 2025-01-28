@@ -18,12 +18,11 @@ SPREADSHEET_ID = os.getenv("SPREADSHEET_ID") or st.secrets["SPREADSHEET_ID"]
 
 
 # Google Sheets Configuration
-SERVICE_ACCOUNT_FILE = st.secrets["credentials_json"]
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 RANGE_NAME = "Sheet1!A1:Z1000"  # Adjust range as needed
 
 
-SERVICE_ACCOUNT_FILE = st.secrets["credentials"]["credentials_json"]
+SERVICE_ACCOUNT_FILE = st.secrets["credentials_json"]
 decoded_creds = base64.b64decode(SERVICE_ACCOUNT_FILE)
 credentials_info = json.loads(decoded_creds)
 
