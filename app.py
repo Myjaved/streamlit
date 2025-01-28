@@ -7,8 +7,7 @@ from google.oauth2.service_account import Credentials
 import pandas as pd  # Import pandas for tabular data handling
 import os
 from dotenv import load_dotenv
-import base64
-import json
+
 # Load environment variables
 load_dotenv()
 
@@ -18,16 +17,13 @@ SPREADSHEET_ID = os.getenv("SPREADSHEET_ID") or st.secrets["SPREADSHEET_ID"]
 
 
 # Google Sheets Configuration
+SERVICE_ACCOUNT_FILE = st.secrets["credentials"]
+
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 RANGE_NAME = "Sheet1!A1:Z1000"  # Adjust range as needed
 
-
-SERVICE_ACCOUNT_FILE = st.secrets["credentials_json"]
-decoded_creds = base64.b64decode(SERVICE_ACCOUNT_FILE)
-credentials_info = json.loads(decoded_creds)
-
 # Load Google Sheets API credentials
-credentials = Credentials.from_service_account_file(credentials_info, scopes=SCOPES)
+credentials = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
 
 def get_sheet_data():
     """Fetch and clean all rows from Google Sheets."""
