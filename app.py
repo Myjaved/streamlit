@@ -82,7 +82,24 @@ def generate_answer(question, context):
     return response.content
 
 def main():
-    st.set_page_config(page_title="Google Sheets ChatBot",layout="wide")
+    # st.set_page_config(page_title="Google Sheets ChatBot",layout="wide",initial_sidebar_state="expanded",page_icon=":shark:")
+    st.set_page_config(
+    page_title="ChatBot",
+    page_icon=":shark:",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+    # **HIDE STREAMLIT DEFAULT UI ELEMENTS**
+    hide_streamlit_style = """
+        <style>
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        header {visibility: hidden;}
+        </style>
+    """
+
+    
+    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
     st.header("Welcome ! What can I help with?")
     user_question = st.text_input("Ask a question:")
