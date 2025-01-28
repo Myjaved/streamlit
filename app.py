@@ -12,18 +12,20 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Google Generative AI Configuration
-genai_api_key = os.getenv("GOOGLE_API_KEY") or st.secrets["GOOGLE_API_KEY"]
-SPREADSHEET_ID = os.getenv("SPREADSHEET_ID") or st.secrets["SPREADSHEET_ID"]
+genai_api_key = os.getenv("GOOGLE_API_KEY") or st.secrets("GOOGLE_API_KEY")
+SPREADSHEET_ID = os.getenv("SPREADSHEET_ID") or st.secrets("SPREADSHEET_ID")
 
 
-# Google Sheets Configuration
-SERVICE_ACCOUNT_FILE = st.secrets["credentials"]
+if st.secrets:
+    credentials_info = dict(st.secrets["credentials"])  # Use Streamlit secrets
+    credentials = Credentials.from_service_account_info(credentials_info, scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"])
+else:
+    # Use local JSON file path for development
+    service_account_file = os.getenv("SERVICE_ACCOUNT_FILE")
+    credentials = Credentials.from_service_account_file(service_account_file, scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"])
 
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 RANGE_NAME = "Sheet1!A1:Z1000"  # Adjust range as needed
-
-# Load Google Sheets API credentials
-credentials = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
 
 def get_sheet_data():
     """Fetch and clean all rows from Google Sheets."""
