@@ -1,0 +1,14 @@
+# Ignore environment files
+.env
+credentials.json
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+
+# Ignore Streamlit's deployment cache
+.streamlit/
+
+# Ignore Python virtual environment
+venv/
+
