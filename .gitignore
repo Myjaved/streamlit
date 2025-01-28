@@ -1,6 +1,7 @@
 # Ignore environment files
 .env
 credentials.json
+credentials_base64.txt
 
 # Ignore Python cache files
 __pycache__/

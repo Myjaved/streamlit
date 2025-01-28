@@ -17,7 +17,8 @@ SPREADSHEET_ID = os.getenv("SPREADSHEET_ID") or st.secrets["SPREADSHEET_ID"]
 
 
 # Google Sheets Configuration
-SERVICE_ACCOUNT_FILE = "credentials.json"
+SERVICE_ACCOUNT_FILE = st.secrets["credentials_json"]
+
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 RANGE_NAME = "Sheet1!A1:Z1000"  # Adjust range as needed
 
@@ -55,7 +56,7 @@ def format_data_for_context(df):
 def generate_answer(question, context):
     """Generate an answer using the Google Generative AI model."""
     prompt_template = """
-    You are the best restaurant manager at Niwant. Use the following context from a Google Sheet, which contains records of order datewise . Your job is to assist the owner by answering questions about today's total sales, the most sold items, previous month's sales, and other operational insights.
+    You are the best restaurant manager at Le-meridian. Use the following context from a Google Sheet, which contains records of order datewise . Your job is to assist the owner by answering questions about today's total sales, the most sold items, previous month's sales, and other operational insights.
     Provide answers in a full sentense,clear, concise, and professional manner with numerical details where applicable. If the answer is not available in the context, say: 'The data for this query is not available in the provided context.
     When there is price then provide it in rupees.
     
@@ -85,7 +86,7 @@ def main():
     user_question = st.text_input("Ask a question:")
 
     if st.button("Get Answer"):
-        with st.spinner("Fetching Data ...Please be Patient..."):
+        with st.spinner("Fetching Data ...Please wait..."):
             # Fetch and clean Google Sheets data
             sheet_data = get_sheet_data()
 
