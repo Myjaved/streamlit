@@ -95,10 +95,11 @@ def main():
         #MainMenu {visibility: hidden;}
         footer {visibility: hidden;}
         header {visibility: hidden;}
+        .stDeployButton {visibility: hidden !important;} /* Hides the Manage Apps button */
         </style>
     """
 
-    
+
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
     st.header("Welcome ! What can I help with?")
