@@ -11,15 +11,6 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-hide_streamlit_style = """
-    <style>
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
-    </style>
-"""
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
 # Google Generative AI Configuration
 genai_api_key = os.getenv("GOOGLE_API_KEY") or st.secrets("GOOGLE_API_KEY")
 SPREADSHEET_ID = os.getenv("SPREADSHEET_ID") or st.secrets("SPREADSHEET_ID")
