@@ -82,7 +82,7 @@ def generate_answer(question, context):
     return response.content
 
 def main():
-    st.set_page_config(page_title="Google Sheets ChatBot")
+    st.set_page_config(page_title="Google Sheets ChatBot",layout="wide")
 
     st.header("Welcome ! What can I help with?")
     user_question = st.text_input("Ask a question:")
