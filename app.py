@@ -96,6 +96,7 @@ def main():
         footer {visibility: hidden;}
         header {visibility: hidden;}
         .stDeployButton {visibility: hidden !important;} /* Hides the Manage Apps button */
+        .stApp .manage-app-button { display: none; }
         </style>
     """
 
