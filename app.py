@@ -95,8 +95,8 @@ def main():
         #MainMenu {visibility: hidden;}
         footer {visibility: hidden;}
         header {visibility: hidden;}
-        .stDeployButton {visibility: hidden !important;} /* Hides the Manage Apps button */
-        .stApp .manage-app-button { display: none; }
+        .stDeployButton {display: none !important;} /* Hides the "Manage App" button */
+        div[data-testid="stDecoration"] {display: none !important;} /* Additional hiding for Streamlit elements */
         </style>
     """
 
