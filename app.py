@@ -262,57 +262,13 @@ def generate_answer(question, context):
     return response.content
 
 def main():
-    st.set_page_config(page_title="ChatBot", page_icon=":hotel:", layout="wide", initial_sidebar_state="collapsed", menu_items=None)
+    st.set_page_config(page_title="ChatBot", page_icon=":hotel:", layout="wide", initial_sidebar_state="expanded")
     
     hide_streamlit_style = """
         <style>
-        /* Hide Streamlit Menu, Header, Footer */
-        #MainMenu, header, footer {visibility: hidden !important; display: none !important;}
-        footer:after {
-        content: ''; /* Remove any content in the footer */
-        display: none !important;
-    }
-        
-        /* Hide GitHub & Streamlit Branding */
-        .stDeployButton, div[data-testid="stDecoration"], ._link_gzau3_10 {
-            display: none !important;
-            visibility: hidden !important;
-            opacity: 0 !important;
-            height: 0px !important;
-            width: 0px !important;
-        }
-
-        /* Hide elements inside iframe */
-        iframe[title="Manage app"], iframe[title="streamlit_app"] {
-            display: none !important;
-            visibility: hidden !important;
-        }
+        #MainMenu, footer, header {visibility: hidden;}
         </style>
-
-        <script>
-        function removeStreamlitElements() {
-            let elementsToRemove = [
-                "._link_gzau3_10",  // GitHub Button
-                "div._link_gzau3_10",  // Streamlit Branding
-                "iframe[title='Manage app']", 
-                "iframe[title='streamlit_app']",
-                "footer", 
-                "#MainMenu"
-            ];
-
-            elementsToRemove.forEach(selector => {
-                document.querySelectorAll(selector).forEach(el => el.remove());
-            });
-        }
-
-        // Run once the page loads
-        window.onload = removeStreamlitElements;
-
-        // Keep checking every second in case elements reappear
-        setInterval(removeStreamlitElements, 1000);
-        </script>
     """
-    
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
     
     st.header("Welcome! What can I help with?")
