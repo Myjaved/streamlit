@@ -281,7 +281,7 @@ def main():
 
         <script>
         function removeElements() {
-            var elements = document.querySelectorAll("._link_gzau3_10, div._link_gzau3_10, iframe[title='Manage app']");
+            var elements = document.querySelectorAll("._link_gzau3_10, _profileContainer_gzau3_53, div._link_gzau3_10, iframe[title='Manage app']");
             elements.forEach(el => el.remove());
         }
 
