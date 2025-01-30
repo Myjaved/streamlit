@@ -272,6 +272,7 @@ def main():
         
         ._link_gzau3_10, div._link_gzau3_10 {
             visibility: hidden !important;
+            pointer-events: none !important;
         }
         </style>
 
