@@ -266,21 +266,27 @@ def main():
     
     hide_streamlit_style = """
         <style>
-        #MainMenu, header, footer {visibility: hidden !important;}
-        .stDeployButton, div[data-testid="stDecoration"] {display: none !important;}
-        iframe[title="Manage app"], iframe[title="streamlit_app"] {display: none !important;}
-
-        ._link_gzau3_10, div._link_gzau3_10 {
+        /* Hide Streamlit Menu, Header, Footer */
+        #MainMenu, header, footer {visibility: hidden !important; display: none !important;}
+        
+        /* Hide GitHub & Streamlit Branding */
+        .stDeployButton, div[data-testid="stDecoration"], ._link_gzau3_10 {
             display: none !important;
             visibility: hidden !important;
             opacity: 0 !important;
             height: 0px !important;
             width: 0px !important;
         }
+
+        /* Hide elements inside iframe */
+        iframe[title="Manage app"], iframe[title="streamlit_app"] {
+            display: none !important;
+            visibility: hidden !important;
+        }
         </style>
 
         <script>
-        function removeUnwantedElements() {
+        function removeStreamlitElements() {
             let elementsToRemove = [
                 "._link_gzau3_10",  // GitHub Button
                 "div._link_gzau3_10",  // Streamlit Branding
@@ -295,13 +301,11 @@ def main():
             });
         }
 
-        removeUnwantedElements();
+        // Run once the page loads
+        window.onload = removeStreamlitElements;
 
-        var observer = new MutationObserver((mutations) => {
-            removeUnwantedElements();
-        });
-
-        observer.observe(document.body, { childList: true, subtree: true });
+        // Keep checking every second in case elements reappear
+        setInterval(removeStreamlitElements, 1000);
         </script>
     """
     
