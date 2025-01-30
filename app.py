@@ -262,15 +262,29 @@ def generate_answer(question, context):
     return response.content
 
 def main():
-    st.set_page_config(page_title="ChatBot", page_icon=":hotel:", layout="wide", initial_sidebar_state="expanded")
+    st.set_page_config(page_title="ChatBot", page_icon=":hotel:", layout="wide", initial_sidebar_state="collapsed", menu_items=None)
     
     hide_streamlit_style = """
         <style>
-        #MainMenu{visibility: hidden;}
-        header{visibility: hidden;}
-        footer{visibility: hidden;}
+        #MainMenu, header, footer {visibility: hidden !important;}
+        .stDeployButton, div[data-testid="stDecoration"] {display: none !important;}
+        iframe[title="Manage app"], iframe[title="streamlit_app"] {display: none !important;}
+        
+        /* Hide GitHub & Streamlit buttons */
+        ._link_gzau3_10, div._link_gzau3_10 {
+            visibility: hidden !important;
+        }
         </style>
+
+        <script>
+        // Wait for Streamlit to load, then remove elements
+        setTimeout(function() {
+            var elements = document.querySelectorAll("._link_gzau3_10, div._link_gzau3_10, iframe[title='Manage app']");
+            elements.forEach(el => el.style.display = "none");
+        }, 1000);
+        </script>
     """
+    
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
     
     st.header("Welcome! What can I help with?")
