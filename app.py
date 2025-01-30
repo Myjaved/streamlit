@@ -262,11 +262,11 @@ def generate_answer(question, context):
     return response.content
 
 def main():
-    st.set_page_config(page_title="ChatBot", page_icon=":hotel:", layout="wide", initial_sidebar_state="expanded")
+    st.set_page_config(page_title="ChatBot", page_icon=":hotel:", layout="wide", initial_sidebar_state="collapsed",menu_items=None)
     
     hide_streamlit_style = """
         <style>
-        #MainMenu, footer, header {visibility: hidden;}
+        #MainMenu, header, footer {visibility: hidden;}
         .stDeployButton, div[data-testid="stDecoration"] {display: none !important;}
         iframe[title="Manage app"] {display: none !important;}
         </style>
