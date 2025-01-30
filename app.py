@@ -266,8 +266,9 @@ def main():
     
     hide_streamlit_style = """
         <style>
-        #MainMenu, footer, header {visibility: hidden;}
-        </style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
     """
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
     
