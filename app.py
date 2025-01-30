@@ -269,7 +269,9 @@ def main():
         #MainMenu, header, footer {visibility: hidden;}
         .stDeployButton, div[data-testid="stDecoration"] {display: none !important;}
         iframe[title="Manage app"] {display: none !important;}
-        ._link_gzau3_10, div._link_gzau3_10 {display: none !important;} /* Hide GitHub & Streamlit buttons */
+        ._link_gzau3_10, div._link_gzau3_10 {
+            visibility: hidden !important;
+        }        
         </style>
     """
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
