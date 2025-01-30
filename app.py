@@ -262,16 +262,12 @@ def generate_answer(question, context):
     return response.content
 
 def main():
-    st.set_page_config(page_title="ChatBot", page_icon=":hotel:", layout="wide", initial_sidebar_state="collapsed",menu_items=None)
+    st.set_page_config(page_title="ChatBot", page_icon=":hotel:", layout="wide", initial_sidebar_state="expanded")
     
     hide_streamlit_style = """
         <style>
-        #MainMenu, header, footer {visibility: hidden;}
-        .stDeployButton, div[data-testid="stDecoration"] {display: none !important;}
-        iframe[title="Manage app"] {display: none !important;}
-        ._link_gzau3_10, div._link_gzau3_10 {
-            display: none !important;
-        }        
+        #MainMenu{visibility: hidden;}
+        footer{visibility: hidden;}
         </style>
     """
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
