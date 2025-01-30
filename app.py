@@ -287,18 +287,18 @@ def main():
                 st.success(answer)
 
     
-    with st.sidebar:
-        st.title("Menu")
-        if st.button("View Google Sheet Data"):
-             with st.spinner("Loading Google Sheets data..."):
-                sheet_data = get_all_sheets_data(MENULIST_SPREADSHEET_ID)
-                if not sheet_data:
-                    st.error("No valid data found in the Google Sheet.")
-                else:
-                    st.write("Google Sheet Data:")
-                    for sheet_name, df in sheet_data.items():
-                        st.subheader(f"Sheet: {sheet_name}")
-                        st.dataframe(df)
+    # with st.sidebar:
+    #     st.title("Menu")
+    #     if st.button("View Google Sheet Data"):
+    #          with st.spinner("Loading Google Sheets data..."):
+    #             sheet_data = get_all_sheets_data(MENULIST_SPREADSHEET_ID)
+    #             if not sheet_data:
+    #                 st.error("No valid data found in the Google Sheet.")
+    #             else:
+    #                 st.write("Google Sheet Data:")
+    #                 for sheet_name, df in sheet_data.items():
+    #                     st.subheader(f"Sheet: {sheet_name}")
+    #                     st.dataframe(df)
 
 if __name__ == "__main__":
     main()
