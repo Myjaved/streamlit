@@ -269,7 +269,7 @@ def main():
         #MainMenu, header, footer {visibility: hidden;}
         .stDeployButton, div[data-testid="stDecoration"] {display: none !important;}
         iframe[title="Manage app"] {display: none !important;}
-        ._link_gzau3_10 {display: none !important;} /* Hides the specific button */
+        ._link_gzau3_10 {display: none !important;}
 
         </style>
     """
