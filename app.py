@@ -269,7 +269,7 @@ def main():
         #MainMenu, header, footer {visibility: hidden !important;}
         .stDeployButton, div[data-testid="stDecoration"] {display: none !important;}
         iframe[title="Manage app"], iframe[title="streamlit_app"] {display: none !important;}
-        
+
         ._link_gzau3_10, div._link_gzau3_10 {
             display: none !important;
             visibility: hidden !important;
@@ -280,15 +280,25 @@ def main():
         </style>
 
         <script>
-        function removeElements() {
-            var elements = document.querySelectorAll("._link_gzau3_10, _profileContainer_gzau3_53, div._link_gzau3_10, iframe[title='Manage app']");
-            elements.forEach(el => el.remove());
+        function removeUnwantedElements() {
+            let elementsToRemove = [
+                "._link_gzau3_10",  // GitHub Button
+                "div._link_gzau3_10",  // Streamlit Branding
+                "iframe[title='Manage app']", 
+                "iframe[title='streamlit_app']",
+                "footer", 
+                "#MainMenu"
+            ];
+
+            elementsToRemove.forEach(selector => {
+                document.querySelectorAll(selector).forEach(el => el.remove());
+            });
         }
 
-        removeElements();
+        removeUnwantedElements();
 
         var observer = new MutationObserver((mutations) => {
-            removeElements();
+            removeUnwantedElements();
         });
 
         observer.observe(document.body, { childList: true, subtree: true });
