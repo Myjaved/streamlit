@@ -268,6 +268,10 @@ def main():
         <style>
         /* Hide Streamlit Menu, Header, Footer */
         #MainMenu, header, footer {visibility: hidden !important; display: none !important;}
+        footer:after {
+        content: ''; /* Remove any content in the footer */
+        display: none !important;
+    }
         
         /* Hide GitHub & Streamlit Branding */
         .stDeployButton, div[data-testid="stDecoration"], ._link_gzau3_10 {
