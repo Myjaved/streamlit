@@ -270,7 +270,7 @@ def main():
         .stDeployButton, div[data-testid="stDecoration"] {display: none !important;}
         iframe[title="Manage app"] {display: none !important;}
         ._link_gzau3_10, div._link_gzau3_10 {
-            visibility: hidden !important;
+            display: none !important;
         }        
         </style>
     """
