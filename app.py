@@ -270,16 +270,14 @@ def main():
         .stDeployButton, div[data-testid="stDecoration"] {display: none !important;}
         iframe[title="Manage app"], iframe[title="streamlit_app"] {display: none !important;}
         
-        /* Hide GitHub & Streamlit buttons */
         ._link_gzau3_10, div._link_gzau3_10 {
             visibility: hidden !important;
         }
         </style>
 
         <script>
-        // Wait for Streamlit to load, then remove elements
         setTimeout(function() {
-            var elements = document.querySelectorAll("._link_gzau3_10, div._link_gzau3_10, iframe[title='Manage app']");
+            var elements = document.querySelectorAll("._link_gzau3_10, div._link_gzau3_10, iframe[title='Hosted with Streamlit']");
             elements.forEach(el => el.style.display = "none");
         }, 1000);
         </script>
