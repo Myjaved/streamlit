@@ -271,16 +271,27 @@ def main():
         iframe[title="Manage app"], iframe[title="streamlit_app"] {display: none !important;}
         
         ._link_gzau3_10, div._link_gzau3_10 {
+            display: none !important;
             visibility: hidden !important;
-            pointer-events: none !important;
+            opacity: 0 !important;
+            height: 0px !important;
+            width: 0px !important;
         }
         </style>
 
         <script>
-        setTimeout(function() {
-            var elements = document.querySelectorAll("._link_gzau3_10, div._link_gzau3_10, iframe[title='Hosted with Streamlit']");
-            elements.forEach(el => el.style.display = "none");
-        }, 1000);
+        function removeElements() {
+            var elements = document.querySelectorAll("._link_gzau3_10, div._link_gzau3_10, iframe[title='Manage app']");
+            elements.forEach(el => el.remove());
+        }
+
+        removeElements();
+
+        var observer = new MutationObserver((mutations) => {
+            removeElements();
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
         </script>
     """
     
