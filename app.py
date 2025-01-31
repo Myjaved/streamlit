@@ -21,7 +21,7 @@ MENULIST_SPREADSHEET_ID = os.getenv("MENULIST_SPREADSHEET_ID") or st.secrets["ME
 
 # Google Sheets Credentials
 # Google Sheets Credentials
-credentials_info = os.getenv("credentials")
+credentials_info = os.environ.get("credentials")
 
 if credentials_info:
     # Convert JSON string to dictionary
