@@ -17,7 +17,7 @@ SPREADSHEET_ID = os.getenv("SPREADSHEET_ID")
 MENULIST_SPREADSHEET_ID = os.getenv("MENULIST_SPREADSHEET_ID")
 
 # Google Sheets Credentials (For Render Deployment)
-CREDENTIALS_PATH = "C:/Users/hp/Downloads/streamlit/streamlit/credentials.json"
+CREDENTIALS_PATH = r"C:\Users\hp\Downloads\streamlit\streamlit\etc\secrets\credentials.json"
 
 try:
     with open(CREDENTIALS_PATH, "r") as f:
