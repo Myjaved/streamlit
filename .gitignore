@@ -9,6 +9,7 @@ __pycache__/
 
 # Ignore Streamlit's deployment cache
 .streamlit/
+.streamlit/secrets.toml
 
 # Ignore Python virtual environment
 venv/
