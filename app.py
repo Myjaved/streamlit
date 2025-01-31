@@ -7,6 +7,7 @@ import pandas as pd
 import os
 from dotenv import load_dotenv
 import datetime
+import json
 
 
 # Load environment variables
@@ -18,12 +19,25 @@ SPREADSHEET_ID = os.getenv("SPREADSHEET_ID") or st.secrets["SPREADSHEET_ID"]
 MENULIST_SPREADSHEET_ID = os.getenv("MENULIST_SPREADSHEET_ID") or st.secrets["MENULIST_SPREADSHEET_ID"]
 
 # Google Sheets Credentials
-credentials_info = st.secrets["credentials"] if "credentials" in st.secrets else None
+# Google Sheets Credentials
+credentials_info = os.getenv("credentials")
+
 if credentials_info:
-    credentials = Credentials.from_service_account_info(credentials_info, scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"])
+    # Convert JSON string to dictionary
+    credentials_info = json.loads(credentials_info)
+    credentials = Credentials.from_service_account_info(
+        credentials_info,
+        scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"]
+    )
 else:
     service_account_file = os.getenv("SERVICE_ACCOUNT_FILE")
-    credentials = Credentials.from_service_account_file(service_account_file, scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"])
+    if service_account_file:
+        credentials = Credentials.from_service_account_file(
+            service_account_file,
+            scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"]
+        )
+    else:
+        st.error("Google Sheets credentials not found!")
 
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 RANGE_NAME = "Sheet1!A1:Z1000"
