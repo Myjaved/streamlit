@@ -21,13 +21,13 @@ MENULIST_SPREADSHEET_ID = os.getenv("MENULIST_SPREADSHEET_ID") or st.secrets["ME
 
 # Google Sheets Credentials
 # Google Sheets Credentials
-credentials_info = os.environ.get("credentials")
+credentials = os.environ.get("credentials")
 
-if credentials_info:
+if credentials:
     # Convert JSON string to dictionary
-    credentials_info = json.loads(credentials_info)
+    credentials = json.loads(credentials_info)
     credentials = Credentials.from_service_account_info(
-        credentials_info,
+        credentials,
         scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"]
     )
 else:
