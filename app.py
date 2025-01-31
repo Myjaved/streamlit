@@ -8,6 +8,7 @@ import os
 from dotenv import load_dotenv
 import datetime
 import json
+st.set_page_config(page_title="ChatBot", page_icon=":hotel:", layout="wide", initial_sidebar_state="expanded")
 
 
 # Load environment variables
@@ -140,7 +141,6 @@ def generate_answer(question, context):
     return response.content
 
 def main():
-    st.set_page_config(page_title="ChatBot", page_icon=":hotel:", layout="wide", initial_sidebar_state="expanded")
     
     hide_streamlit_style = """
         <style>
