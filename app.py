@@ -15,9 +15,9 @@ st.set_page_config(page_title="ChatBot", page_icon=":hotel:", layout="wide", ini
 load_dotenv()
 
 # Google Generative AI Configuration
-genai_api_key = os.getenv("GOOGLE_API_KEY") or st.secrets["GOOGLE_API_KEY"]
-SPREADSHEET_ID = os.getenv("SPREADSHEET_ID") or st.secrets["SPREADSHEET_ID"]
-MENULIST_SPREADSHEET_ID = os.getenv("MENULIST_SPREADSHEET_ID") or st.secrets["MENULIST_SPREADSHEET_ID"]
+genai_api_key = os.environ.get("GOOGLE_API_KEY") or st.secrets["GOOGLE_API_KEY"]
+SPREADSHEET_ID = os.environ.get("SPREADSHEET_ID") or st.secrets["SPREADSHEET_ID"]
+MENULIST_SPREADSHEET_ID = os.environ.get("MENULIST_SPREADSHEET_ID") or st.secrets["MENULIST_SPREADSHEET_ID"]
 
 # Google Sheets Credentials
 # Google Sheets Credentials
