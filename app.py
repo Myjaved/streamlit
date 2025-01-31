@@ -238,7 +238,7 @@ def generate_answer(question, context):
     - For all sales-related queries, refer only to the data in Sheet1, which contains the Order_Date, Menu_Name, Quantity_Sold, Menu_Price, and Menu_Rate.
     - The total sale for a day is calculated by summing up the Menu_Rate values for all items sold on that day , also shows the sold item.
     Example: On 26-01-2025, the total sale is the sum of Menu_Rate for the sold items.
-    If the data for a query is unavailable in the context, respond with: "The data for this query is not available in the provided context."
+    If the data for a query is unavailable in the context, respond with: "The result for this question is not available in my knowledge."
     
     As the Waiter:
     - Use the provided Google Sheet context, which contains the food menu list, to assist customers with their queries about the menu, prices, and order creation for lunch or dinner in detailed and friendly responses.
