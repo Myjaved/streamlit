@@ -7,46 +7,24 @@ import pandas as pd
 import os
 from dotenv import load_dotenv
 import datetime
-import json
 
 
 # Load environment variables
 load_dotenv()
 
-genai_api_key = os.getenv("GOOGLE_API_KEY") or st.secrets.get("GOOGLE_API_KEY")
-SPREADSHEET_ID = os.getenv("SPREADSHEET_ID") or st.secrets.get("SPREADSHEET_ID")
-MENULIST_SPREADSHEET_ID = os.getenv("MENULIST_SPREADSHEET_ID") or st.secrets.get("MENULIST_SPREADSHEET_ID")
+# Google Generative AI Configuration
+genai_api_key = os.getenv("GOOGLE_API_KEY") or st.secrets["GOOGLE_API_KEY"]
+SPREADSHEET_ID = os.getenv("SPREADSHEET_ID") or st.secrets["SPREADSHEET_ID"]
+MENULIST_SPREADSHEET_ID = os.getenv("MENULIST_SPREADSHEET_ID") or st.secrets["MENULIST_SPREADSHEET_ID"]
 
-# Load Google Sheets Credentials
-credentials_info = st.secrets.get("credentials")
-
+# Google Sheets Credentials
+credentials_info = st.secrets["credentials"] if "credentials" in st.secrets else None
 if credentials_info:
-    try:
-        # Parse JSON if it's a string
-        if isinstance(credentials_info, str):
-            credentials_info = json.loads(credentials_info)
-
-        credentials = Credentials.from_service_account_info(
-            credentials_info,
-            scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"]
-        )
-        print("✅ Loaded credentials from st.secrets")
-    except Exception as e:
-        print(f"❌ Error loading credentials from secrets: {e}")
-        credentials = None
+    credentials = Credentials.from_service_account_info(credentials_info, scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"])
 else:
     service_account_file = os.getenv("SERVICE_ACCOUNT_FILE")
-    if service_account_file and os.path.exists(service_account_file):
-        credentials = Credentials.from_service_account_file(
-            service_account_file,
-            scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"]
-        )
-        print("✅ Loaded credentials from SERVICE_ACCOUNT_FILE")
-    else:
-        print("❌ No valid credentials found!")
-        credentials = None
-        
-        
+    credentials = Credentials.from_service_account_file(service_account_file, scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"])
+
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 RANGE_NAME = "Sheet1!A1:Z1000"
 MENULIST_RANGE_NAME = "Sheet2!A1:Z1000"
@@ -171,6 +149,20 @@ def main():
             else:
                 answer = generate_answer(user_question, context)
                 st.success(answer)
+
+    
+    # with st.sidebar:
+    #     st.title("Menu")
+    #     if st.button("View Google Sheet Data"):
+    #          with st.spinner("Loading Google Sheets data..."):
+    #             sheet_data = get_all_sheets_data(MENULIST_SPREADSHEET_ID)
+    #             if not sheet_data:
+    #                 st.error("No valid data found in the Google Sheet.")
+    #             else:
+    #                 st.write("Google Sheet Data:")
+    #                 for sheet_name, df in sheet_data.items():
+    #                     st.subheader(f"Sheet: {sheet_name}")
+    #                     st.dataframe(df)
 
 if __name__ == "__main__":
     main()
