@@ -31,7 +31,7 @@ if credentials:
         scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"]
     )
 else:
-    service_account_file = os.getenv("SERVICE_ACCOUNT_FILE")
+    service_account_file = os.getenv("SERVICE_ACCOUNT")
     if service_account_file:
         credentials = Credentials.from_service_account_file(
             service_account_file,
