@@ -7,8 +7,6 @@ import pandas as pd
 import os
 from dotenv import load_dotenv
 import datetime
-import json
-st.set_page_config(page_title="ChatBot", page_icon=":hotel:", layout="wide", initial_sidebar_state="expanded")
 
 
 # Load environment variables
@@ -20,25 +18,12 @@ SPREADSHEET_ID = os.getenv("SPREADSHEET_ID") or st.secrets["SPREADSHEET_ID"]
 MENULIST_SPREADSHEET_ID = os.getenv("MENULIST_SPREADSHEET_ID") or st.secrets["MENULIST_SPREADSHEET_ID"]
 
 # Google Sheets Credentials
-# Google Sheets Credentials
-credentials_info = os.getenv("credentials")
-
+credentials_info = st.secrets["credentials"] if "credentials" in st.secrets else None
 if credentials_info:
-    # Convert JSON string to dictionary
-    credentials_info = json.loads(credentials_info)
-    credentials = Credentials.from_service_account_info(
-        credentials_info,
-        scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"]
-    )
+    credentials = Credentials.from_service_account_info(credentials_info, scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"])
 else:
     service_account_file = os.getenv("SERVICE_ACCOUNT_FILE")
-    if service_account_file:
-        credentials = Credentials.from_service_account_file(
-            service_account_file,
-            scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"]
-        )
-    else:
-        st.error("Google Sheets credentials not found!")
+    credentials = Credentials.from_service_account_file(service_account_file, scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"])
 
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 RANGE_NAME = "Sheet1!A1:Z1000"
@@ -141,6 +126,7 @@ def generate_answer(question, context):
     return response.content
 
 def main():
+    st.set_page_config(page_title="ChatBot", page_icon=":hotel:", layout="wide", initial_sidebar_state="expanded")
     
     hide_streamlit_style = """
         <style>
