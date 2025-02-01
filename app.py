@@ -5,15 +5,8 @@ from googleapiclient.discovery import build
 from google.oauth2.service_account import Credentials
 import pandas as pd
 import os
-<<<<<<< HEAD
 from dotenv import load_dotenv
 import datetime
-
-=======
-import json
-import datetime
-from dotenv import load_dotenv
->>>>>>> 22874874613a6d62d18d7263284b923be823c3a0
 
 # Load environment variables
 load_dotenv()
@@ -21,29 +14,12 @@ load_dotenv()
 # Google Sheets Configuration
 SPREADSHEET_ID = os.getenv("SPREADSHEET_ID")
 MENULIST_SPREADSHEET_ID = os.getenv("MENULIST_SPREADSHEET_ID")
-
-<<<<<<< HEAD
-# Google Sheets Credentials
 credentials_info = st.secrets["credentials"] if "credentials" in st.secrets else None
 if credentials_info:
     credentials = Credentials.from_service_account_info(credentials_info, scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"])
 else:
     service_account_file = os.getenv("SERVICE_ACCOUNT_FILE")
     credentials = Credentials.from_service_account_file(service_account_file, scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"])
-=======
-# Google Sheets Credentials (For Render Deployment)
-CREDENTIALS_PATH = r"C:\Users\hp\Downloads\streamlit\streamlit\etc\secrets\credentials.json"
-
-try:
-    with open(CREDENTIALS_PATH, "r") as f:
-        credentials_info = json.load(f)
-    credentials = Credentials.from_service_account_info(
-        credentials_info, scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"]
-    )
-except Exception as e:
-    st.error(f"Error loading credentials: {e}")
-    credentials = None
->>>>>>> 22874874613a6d62d18d7263284b923be823c3a0
 
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
 
@@ -147,11 +123,7 @@ def generate_answer(question, context):
 
 def main():
     st.set_page_config(page_title="ChatBot", page_icon=":hotel:", layout="wide", initial_sidebar_state="expanded")
-<<<<<<< HEAD
     
-=======
-
->>>>>>> 22874874613a6d62d18d7263284b923be823c3a0
     hide_streamlit_style = """
         <style>
         #MainMenu, footer, header {visibility: hidden;}
